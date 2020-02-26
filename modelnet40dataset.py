@@ -60,7 +60,7 @@ class ModelNet40Dataset(keras.utils.Sequence):
         for i, idx in enumerate(batch_idx, 0):
             x[i] = self.datas[idx, 0:self.npoints, :] # take the first n points. TODO: random choice
             y[i] = self.labels[idx]
-        if self.augment: # and np.random.rand()>0.5:
+        if self.augment and np.random.rand()>0.5:
             # implement data augmentation to the whole BATCH
             rotated_x = provider.rotate_point_cloud(x) # rotate around x-axis
             rotated_x = provider.rotate_perturbation_point_cloud(rotated_x) # slightly rotate around every aixs
