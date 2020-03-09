@@ -147,7 +147,7 @@ class SunrgbdDetectionVotesDataset(Sequence):
             scale_ratio = np.random.rand()*0.3 + 0.85 # 0.85 ~ 1.15
             point_cloud[:, 0:3] *= scale_ratio
             bboxes[:,0:6] *= scale_ratio
-            point_votes[:,1:-1] *= scale_ratio
+            point_votes[:,1:] *= scale_ratio
             if self.use_height:
                 point_cloud[:,-1] *= scale_ratio
 

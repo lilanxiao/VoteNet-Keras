@@ -72,7 +72,7 @@ dataset = SunrgbdDetectionVotesDataset(split_set='val',
                                         batch_size=batch_size, 
                                         num_points=num_points, 
                                         shuffle=shuffle_generator, 
-                                        use_color=False,
+                                        use_color=use_color,
                                         use_height=use_height,
                                         use_v1=use_v1,
                                         augment=False)
