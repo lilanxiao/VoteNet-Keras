@@ -68,6 +68,7 @@ class SampleAndGroup(Layer):
         idx, _ = query_ball_point(self.radius, self.n_samples, xyz, new_xyz)
         grouped_xyz = group_point(xyz, idx) # (batch_size, n_centroids, n_sample, 3)
         grouped_xyz -= tf.tile(tf.expand_dims(new_xyz, 2), [1,1,self.n_samples,1]) # translation normalization
+        grouped_xyz /= self.radius # normalize xyz w.r.t the radius
         if self.use_feature: # can't use None type here
             grouped_points = group_point(features, idx) # (batch_size, n_centroid, n_samples, channels)
             if self.use_xyz:

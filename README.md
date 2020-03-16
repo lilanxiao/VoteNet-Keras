@@ -50,7 +50,7 @@ Run following script to evaluate VoteNet. The pretraind weight in folder `logs\v
 
 The inferencing result of the first batch will be visualized via Open3d. To close the pop out window, press `ESC`. After that, the model will be evaluated on the whole validation set and the AP and AR will be printed.
 
-Here is an example. The red and green boxes illustrate predicted and ground truth bounding box respectively. The green and blue points represent votes and high confidence centers.
+Here is an example. The red and green boxes illustrate predicted and ground truth bounding box respectively. The red, green and blue points represent seeds, votes and object centers, respectively.
 
 ![prediction_1](/images/prediction1.png)
 
@@ -126,33 +126,33 @@ If you find our work useful in your research, please consider citing:
 
 ### 1.Performance Gap
 
-The pretrained model can make decent predictions but the overall performance is obviously worse than the original implementation. Here is the result I get:
+I've fixed some bugs and changed the hyperparameters a little bit. The pretrained model can make decent predictions but the overall performance is still a liitle worse than the original implementation (59.9% mAP@0.25IoU with v2 label). Here is the best result I get:
 
     With threshhold of 0.25 3DIoU :
-    eval bed Average Precision: 0.847250
-    eval table Average Precision: 0.460003
-    eval sofa Average Precision: 0.645876
-    eval chair Average Precision: 0.657584
-    eval toilet Average Precision: 0.682671
-    eval desk Average Precision: 0.206105
-    eval dresser Average Precision: 0.225193
-    eval night_stand Average Precision: 0.430959
-    eval bookshelf Average Precision: 0.228098
-    eval bathtub Average Precision: 0.646078
-    eval mAP: 0.502982
+    eval bed Average Precision: 0.845506
+    eval table Average Precision: 0.497235
+    eval sofa Average Precision: 0.665012
+    eval chair Average Precision: 0.777190
+    eval toilet Average Precision: 0.863728
+    eval desk Average Precision: 0.258113
+    eval dresser Average Precision: 0.266407
+    eval night_stand Average Precision: 0.598512
+    eval bookshelf Average Precision: 0.305829
+    eval bathtub Average Precision: 0.675479
+    eval mAP: 0.575301
     eval bed Recall: 0.951456
-    eval table Recall: 0.861040
-    eval sofa Recall: 0.904306
-    eval chair Recall: 0.871016
-    eval toilet Recall: 0.944828
-    eval desk Recall: 0.801807
-    eval dresser Recall: 0.766055
-    eval night_stand Recall: 0.862745
-    eval bookshelf Recall: 0.641844
-    eval bathtub Recall: 0.857143
-    eval AR: 0.846224
+    eval table Recall: 0.860307
+    eval sofa Recall: 0.913876
+    eval chair Recall: 0.897664
+    eval toilet Recall: 0.972414
+    eval desk Recall: 0.832094
+    eval dresser Recall: 0.743119
+    eval night_stand Recall: 0.898039
+    eval bookshelf Recall: 0.677305
+    eval bathtub Recall: 0.816327
+    eval AR: 0.856260
 
- By looking into the losses, the value of objectness loss and center loss is higher than they should be. There are probably some bugs in this code but I can't find them out.
+Any suggestions and insights about this issue would be welcome.
 
 ### 2.Duplicate random number in date augmentation with multiprocessing
 

@@ -23,7 +23,7 @@ parser.add_argument('--epochs', default=180, help='Epochs to train [default: 180
 parser.add_argument('--num_proposals', default=256, help='Number of proposals [default: 256]')
 parser.add_argument('--log_dir',default='logs/votenet', help='Path to save the checkpoints [default logs/votenet]')
 parser.add_argument('--lr', default=0.001, help='Initail learning rate [default 0.001]')
-parser.add_argument('--lr_decay_step', type=list, default=[80,120,160], help='When to decay the learning rate [default: [80,120,160]')
+parser.add_argument('--lr_decay_step', default='80,120,160', help='When to decay the learning rate [default: [80,120,160]')
 parser.add_argument('--lr_decay_factor', default=10, help='Learning rate decay factor [default 10]')
 parser.add_argument('--bn_momentum', default=0.5, help='Initial batch norm momentum [default 0.5]')
 parser.add_argument('--bn_decay_rate', default=0.5, help='Decay rate of batch norm momentum [default 0.5')
@@ -42,7 +42,7 @@ vote_factor = flags.vote_factor
 num_proposals = flags.num_proposals
 epochs = flags.epochs
 lr = flags.lr
-lr_decay_step = flags.lr_decay_step
+lr_decay_step = [int(x) for x in flags.lr_decay_step.slpit(',')]
 lr_decay_factor = flags.lr_decay_factor
 bn_momentum_init = flags.bn_momentum
 bn_decay_rate = flags.bn_decay_rate
