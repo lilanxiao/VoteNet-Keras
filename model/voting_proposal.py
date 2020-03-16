@@ -79,8 +79,8 @@ def proposal_module(vote_xyz, vote_features, num_class, num_head_bin,
     vote_xyz = layers.Reshape((-1, 3))(vote_xyz)
     vote_features = layers.Reshape((-1, seed_feature_dim))(vote_features) # squeeze the tensors
     xyz, features, idx = pointnet_sa_module(vote_xyz,vote_features, mlp=[128,128,128], 
-                                            n_centroid=num_proposal, n_samples=16, 
-                                            radius=0.3, use_feature=True, use_xyz=True, 
+                                            n_centroid=num_proposal, n_samples=64, 
+                                            radius=0.8, use_feature=True, use_xyz=True, 
                                             random_sample=random_sample)
     features = layers.Reshape((-1,1,128))(features) # 128 = mlp[-1]
     net = conv_bn_relu(features, 128)
